@@ -1,0 +1,35 @@
+<html ng-app="jarvys">
+<head>
+	<title></title>
+	<link href='http://fonts.googleapis.com/css?family=Inconsolata:400,700' rel='stylesheet' type='text/css'>
+	<link href="dist/css/jarvys-terminal-styles.min.css" rel="stylesheet"></link>
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+	<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.3.4/angular.min.js"></script>
+	<script src="dist/js/jarvys-terminal.js"></script>
+</head>
+<body>
+	<div id="terminal" ng-controller="TerminalController">
+		<div id="terminal-bar">
+			<div id="terminal-buttons">
+				<div id="terminal-close"></div>
+				<div id="terminal-minimize"></div>
+				<div id="terminal-fullscreen"></div>
+			</div>
+		</div>
+
+		<div id="terminal-body" scroll-glue>
+			<form id="terminalForm" ng-enter="terminalSubmit()">
+				<div data-ng-repeat="input in inputs">
+					[root@jarvys ~]#
+					<input  class="terminal-input" ng-model="input.name" ng-disabled="input.disabled" focus-on="{{input.id}}" />
+					<p ng-bind-html="input.response | nl2br"></p>
+					<p ng-bind-html="input.response2 | nl2br"></p>
+				</div>
+			</form>
+		</div>
+	</div>
+	<div style="margin-top:40px;">
+		<p><strong>Copy and Paste this:</strong> curl -d '{"k":"myKey"}' https://my.jarvys.io/setup > jarvys-setup.sh &amp;&amp; sh jarvys-setup.sh</p>
+	</div>
+</body>
+</html>
