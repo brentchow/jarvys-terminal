@@ -4,11 +4,9 @@
  *		A JARVYS.io Project
  */
 
-var jarvys = angular.module('jarvys',['luegg.directives']);
+jarvys.controller('TerminalController', ['$scope','$timeout','$interval','focus', function($scope,$timeout,$interval,focus) {
 
-jarvys.controller('TerminalController', ['$scope','$timeout','focus', function($scope,$timeout,focus) {
-
-	$scope.inputs = [{id:'input1'}];
+	$scope.inputs = [{id:'input1', cursor:true}];
 	$scope.responses = [
 		'error',
 		'This host has been added successfully to your Jarvys account.\nThe initial backup will start automatically in less than an hour.\nIf you\'d like to backup right now, run the following command:\n\n<span class="terminal-command">jarvys backup</span>',
@@ -22,12 +20,31 @@ jarvys.controller('TerminalController', ['$scope','$timeout','focus', function($
 	];
 
 	$scope.inputCount = $scope.inputs.length-1;
+	$scope.cursor = 'cursor-show';
+
+	$scope.focusOnInput = function() {
+		inputId = $scope.inputs.length-1;
+		focus($scope.inputs[inputId].id);
+	};
+
+	$interval(function() {
+		if ($scope.cursor == 'cursor-show') {
+			$scope.cursor = 'cursor-hidden';
+		} else {
+			$scope.cursor = 'cursor-show';
+		};
+	}, 500);
+	
 
 	$scope.addNewInput = function() {
 		var newID = $scope.inputs.length+1,
-			inputId = $scope.inputs.length;
-		$scope.inputs.push({'id':'input'+newID});
-		focus($scope.inputs[inputId].id);
+			inputCount = $scope.inputs.length,
+			oldInput = $scope.inputs.length-1;
+		$scope.inputs[oldInput].cursor = false;
+		$scope.inputs.push({'id':'input'+newID,'cursor':true});
+		// focus($scope.inputs[inputCount].id);
+		console.log($scope.inputs[oldInput].cursor);
+		$scope.focusOnInput();
 	};
 
 	$scope.inputResponse2 = function(id, res) {
@@ -55,9 +72,13 @@ jarvys.controller('TerminalController', ['$scope','$timeout','focus', function($
 	$scope.restartConsole = function(id, res) {
 		$scope.inputs[id].response = $scope.responses[res];
 		$scope.inputs[id].disabled = true;
+		var oldInput = $scope.inputs.length-1;
+		$scope.inputs[oldInput].cursor = false;
+
 		$timeout(function(){
-			$scope.inputs = [{id:'input1'}];
+			$scope.inputs = [{id:'input1', cursor: true}];
 			$scope.inputCount = $scope.inputs.length-1;
+			$scope.focusOnInput();
 		}, 3000); 
 	};
 

@@ -17,11 +17,11 @@
 			</div>
 		</div>
 
-		<div id="terminal-body" scroll-glue>
+		<div id="terminal-body" ng-click="focusOnInput()" scroll-glue>
 			<form id="terminalForm" ng-enter="terminalSubmit()">
 				<div data-ng-repeat="input in inputs">
-					[root@jarvys ~]#
-					<input  class="terminal-input" ng-model="input.name" ng-disabled="input.disabled" focus-on="{{input.id}}" />
+					<span class="terminal-root">[root@jarvys ~]#</span>
+					<input  class="terminal-input" ng-model="input.name" ng-disabled="input.disabled" focus-on="{{input.id}}" /><span class="terminal-input-display">{{input.name}}<span><span ng-class="cursor" ng-if="input.cursor == true"></span>
 					<p ng-bind-html="input.response | nl2br"></p>
 					<p ng-bind-html="input.response2 | nl2br"></p>
 				</div>
@@ -29,7 +29,7 @@
 		</div>
 	</div>
 	<div style="margin-top:40px;">
-		<p><strong>Copy and Paste this:</strong> curl -d '{"k":"myKey"}' https://my.jarvys.io/setup > jarvys-setup.sh &amp;&amp; sh jarvys-setup.sh</p>
+		<p><strong>Step 1 - Copy and Paste this:</strong> curl -d '{"k":"myKey"}' https://my.jarvys.io/setup > jarvys-setup.sh &amp;&amp; sh jarvys-setup.sh</p>
 	</div>
 </body>
 </html>

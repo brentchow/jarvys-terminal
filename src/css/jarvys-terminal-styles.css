@@ -36,41 +36,60 @@
 	border:solid 0px;
 }
 #terminal-close {
-	background-color: #FF5F52;
+	background-color:#FF5F52;
 	border-color:#E33E32;
 }
 #terminal-minimize {
-	background-color: #FFBE05;
+	background-color:#FFBE05;
 	border-color:#E2A100;
 }
 #terminal-fullscreen {
-	background-color: #15CC35;
+	background-color:#15CC35;
 	border-color:#17B230;
 }
 
 #terminal-body{
 	font-family: 'Inconsolata';
 	font-size: 1.0em;
-	background: #ebebeb;
+	color:#000;
+	background:#ebebeb;
 	width:100%;
 	height:100%;
+	padding-top: 1px;
 	position:relative;
 	overflow-y:scroll;
 }
 
+.terminal-root {
+	color:#BFBFBF;
+}
+
 .terminal-input {
-	font-family: 'Inconsolata';
-	font-size: 1.0em;
-	background: #ebebeb;
 	border:none;
 	outline:0;
-	height:auto;
-	width:350px;
+	height:0px;
+	width:0px;
 	padding:0;
-	position:relative;
+}
+
+.terminal-input-display {
+}
+
+.cursor-show {
+	background-color: #000;
+	height: 1.0em;
+	width: 0.5em;
+	display: inline-block;
+	vertical-align: text-bottom;
+}
+
+.cursor-hidden {
+	display:none;
+	visibility: hidden;
 }
 
 .terminal-command {
 	color:#165987;
 	font-weight: 700;
 }
+
