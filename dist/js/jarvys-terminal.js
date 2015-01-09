@@ -152,7 +152,7 @@ jarvys.controller('TerminalController', ['$scope','$timeout','$interval','focus'
 		'Item(s) to restore: /home/jdoe/project\nSnapshot from x days: 2\nRestore location: /root/jarvys-restore\n\nWARNING: Any files in the restore directory may be overwritten,\nmake sure any files you want to keep are safely moved elsewhere.\n\nContinue with restore? [y/n]',
 		'Restoring...',
 		'Backup complete!\n\nTry restoring with this command:\n\n<span class="terminal-command">jarvys restore /home/jdoe/project</span>',
-		'Your file(s)/directory were successfully restored!',
+		'Your file(s)/directory were successfully restored!\n\nAwesome! You completed the tutorial! <a href="https://jarvys.io/#packages">Click here to get started for free</a>!',
 		'Restore cancelled.\n\nTry again. We\'re going to reset your CLI in 3 seconds.'
 	];
 
